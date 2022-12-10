@@ -1,5 +1,5 @@
 name: animated_list_item
-description: A new flutter plugin project which provide animation for items in ListView.
+description: A flutter package whitch provide Animation of items in ListView, GridView, SliverList, etc.
 version: 0.0.1
 repository: https://github.com/w830207/animated_list_item
 
