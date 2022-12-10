@@ -34,6 +34,15 @@ class _MyHomePageState extends State<MyHomePage>
   late AnimationController _animationController;
   List list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+  Container item(int index) {
+    return Container(
+      color: Colors.blue,
+      margin: const EdgeInsets.all(8),
+      alignment: Alignment.center,
+      child: Text("$index"),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -59,19 +68,12 @@ class _MyHomePageState extends State<MyHomePage>
                   child: ListView.builder(
                       itemCount: list.length,
                       itemBuilder: (context, index) {
-                        Widget widget = Container(
-                          color: Colors.blue,
-                          margin: const EdgeInsets.all(8),
-                          alignment: Alignment.center,
-                          child: Text("$index"),
-                        );
-
                         return AnimatedListItem(
                           index: index,
                           length: list.length,
                           aniController: _animationController,
-                          animationType: AnimationType.flip,
-                          child: widget,
+                          animationType: AnimationType.flipX,
+                          child: item(index),
                         );
                       }),
                 ),
@@ -79,19 +81,12 @@ class _MyHomePageState extends State<MyHomePage>
                   child: ListView.builder(
                       itemCount: list.length,
                       itemBuilder: (context, index) {
-                        Widget widget = Container(
-                          color: Colors.blue,
-                          margin: const EdgeInsets.all(8),
-                          alignment: Alignment.center,
-                          child: Text("$index"),
-                        );
-
                         return AnimatedListItem(
                           index: index,
                           length: list.length,
                           aniController: _animationController,
-                          animationType: AnimationType.zoom,
-                          child: widget,
+                          animationType: AnimationType.flipY,
+                          child: item(index),
                         );
                       }),
                 ),
@@ -99,26 +94,38 @@ class _MyHomePageState extends State<MyHomePage>
             ),
           ),
           Expanded(
-            child: ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (context, index) {
-                  Widget widget = Container(
-                    color: Colors.blue,
-                    margin: const EdgeInsets.all(8),
-                    alignment: Alignment.center,
-                    child: Text("$index"),
-                  );
-
-                  return AnimatedListItem(
-                    index: index,
-                    length: list.length,
-                    startY: 40,
-                    startX: 40,
-                    aniController: _animationController,
-                    animationType: AnimationType.slide,
-                    child: widget,
-                  );
-                }),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: list.length,
+                      itemBuilder: (context, index) {
+                        return AnimatedListItem(
+                          index: index,
+                          length: list.length,
+                          aniController: _animationController,
+                          animationType: AnimationType.zoomIn,
+                          child: item(index),
+                        );
+                      }),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: list.length,
+                      itemBuilder: (context, index) {
+                        return AnimatedListItem(
+                          index: index,
+                          length: list.length,
+                          aniController: _animationController,
+                          animationType: AnimationType.slideIn,
+                          startX: 40,
+                          startY: 60,
+                          child: item(index),
+                        );
+                      }),
+                ),
+              ],
+            ),
           ),
         ],
       ), // This trailing comma makes auto-formatting nicer for build methods.

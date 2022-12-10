@@ -2,19 +2,38 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 enum AnimationType {
-  slide,
-  flip,
-  zoom,
+  flipX,
+  flipY,
+  zoomIn,
+  slideIn,
 }
 
 class AnimatedListItem extends StatefulWidget {
   final Widget child;
+
+  /// the index of this item in List etc.
   final int index;
+
+  /// amount of all these items
   final int length;
+
+  ///
   final AnimationController aniController;
+
+  /// If [animationType] is [AnimationType.slideIn], [startX] must not be null.
+  /// [startX] only works when [animationType] is [AnimationType.slideIn].
+  /// [startX] decide item starting point in x-axis
   final double? startX;
+
+  /// If [animationType] is [AnimationType.slideIn], [startY] must not be null.
+  /// [startY] only works when [animationType] is [AnimationType.slideIn].
+  /// [startY] decide item starting point in x-axis
   final double? startY;
+
+  ///  animation curves
   final Curve curve;
+
+  /// use [animationType] to chose what Animation you want.
   final AnimationType animationType;
 
   const AnimatedListItem({
@@ -26,21 +45,21 @@ class AnimatedListItem extends StatefulWidget {
     this.startX,
     this.startY,
     this.curve = Curves.linear,
-    this.animationType = AnimationType.slide,
+    this.animationType = AnimationType.slideIn,
   })  : assert(
-            animationType == AnimationType.slide
+            animationType == AnimationType.slideIn
                 ? startX == null
                     ? false
                     : true
                 : true,
-            "AnimationType.slide startX 必填"),
+            "If animationType is AnimationType.slide, startX must not be null."),
         assert(
-            animationType == AnimationType.slide
+            animationType == AnimationType.slideIn
                 ? startY == null
                     ? false
                     : true
                 : true,
-            "AnimationType.slide startY 必填"),
+            "If animationType is AnimationType.slide, startY must not be null."),
         super(key: key);
 
   @override
@@ -77,25 +96,32 @@ class _AnimatedListItemState extends State<AnimatedListItem>
         );
 
         switch (widget.animationType) {
-          case AnimationType.slide:
-            return Transform.translate(
-              offset: Offset(
-                  itemAnimation().value * widget.startX - widget.startX,
-                  itemAnimation().value * widget.startY - widget.startY),
-              child: child,
-            );
-          case AnimationType.flip:
+          case AnimationType.flipX:
+            return Transform(
+                alignment: Alignment.center,
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, 0.003)
+                  ..rotateX((1 - itemAnimation().value) * pi),
+                child: child);
+          case AnimationType.flipY:
             return Transform(
                 alignment: Alignment.center,
                 transform: Matrix4.identity()
                   ..setEntry(3, 2, 0.002)
                   ..rotateY((1 - itemAnimation().value) * pi),
                 child: child);
-          case AnimationType.zoom:
+          case AnimationType.zoomIn:
             return Transform.scale(
                 alignment: Alignment.center,
                 scale: itemAnimation().value,
                 child: child);
+          case AnimationType.slideIn:
+            return Transform.translate(
+              offset: Offset(
+                  itemAnimation().value * widget.startX - widget.startX,
+                  itemAnimation().value * widget.startY - widget.startY),
+              child: child,
+            );
         }
       },
       child: widget.child,

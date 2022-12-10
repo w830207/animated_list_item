@@ -1,18 +1,27 @@
 # animated_list_item
 
-A new flutter plugin project.
+A flutter package whitch provide Animation of items in ListView, GridView, SliverList, etc.
 
-## Getting Started
+# Installing
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+### 1. Depend on it
+Add this to your package's `pubspec.yaml` file:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```yaml
+dependencies:
+  animated_list_item: ^0.0.1
+```
 
-The plugin project was generated without specifying the `--platforms` flag, no platforms are currently supported.
-To add platforms, run `flutter create -t plugin --platforms <platforms> .` under the same
-directory. You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
+### 2. Install it
+
+```css
+$  flutter packages get
+```
+
+### 3. Import it
+
+Now in your code, you can use: 
+
+````dart
+    import 'package:animated_list_item/animated_list_item.dart';
+````
