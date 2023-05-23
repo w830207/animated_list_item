@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage>
                           index: index,
                           length: list.length,
                           aniController: _animationController,
-                          animationType: AnimationType.zoomIn,
+                          animationType: AnimationType.zoom,
                           child: item(index),
                         );
                       }),
@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage>
                           index: index,
                           length: list.length,
                           aniController: _animationController,
-                          animationType: AnimationType.slideIn,
+                          animationType: AnimationType.slide,
                           startX: 40,
                           startY: 60,
                           child: item(index),
