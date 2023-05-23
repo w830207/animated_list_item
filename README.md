@@ -11,7 +11,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  animated_list_item: ^0.0.1
+  animated_list_item: ^1.0.0
 ```
 
 ### Import it
@@ -23,6 +23,34 @@ Now in your code, you can use:
 ````
 
 # AnimationType
+
+all types here 👇:
+fade,
+
+// flip
+flipX,
+flipXTop,
+flipXBottom,
+flipY,
+flipYLeft,
+flipYRight,
+
+// zoom
+zoom,
+zoomLeft,
+zoomRight,
+
+// rotate
+rotate,
+rotateLeft,
+rotateRight,
+
+// translate
+slide,
+shakeX,
+shakeY,
+
+# Example
 
 preparation 👇
 ```dart
@@ -90,7 +118,7 @@ ListView.builder(
 );
 ```
 
-## zoomIn
+## zoom
 
 <img src="https://github.com/w830207/animated_list_item/blob/main/display/zoomIn.gif?raw=true">
 
@@ -103,14 +131,14 @@ ListView.builder(
       index: index,
       length: list.length,
       aniController: _animationController,
-      animationType: AnimationType.zoomIn,
+      animationType: AnimationType.zoom,
       child: item(index),
     );
   },
 );
 ```
 
-## slideIn
+## slide
 
 <img src="https://github.com/w830207/animated_list_item/blob/main/display/slideIn.gif?raw=true">
 
