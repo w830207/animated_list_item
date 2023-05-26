@@ -54,7 +54,7 @@ class AnimatedListItem extends StatefulWidget {
 
   /// use [animationType] to chose what Animation you want.
   final AnimationType animationType;
-
+  
   /// use fade-in effect or not
   final bool fadeIn;
 
